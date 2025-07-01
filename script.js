@@ -12,6 +12,21 @@ function checkVisible() {
     }
   });
 }
+// Toggle menu hamburger
+const menuIcon = document.getElementById('menu-icon');
+const menuLinks = document.getElementById('menu-links');
+
+menuIcon.addEventListener('click', () => {
+  menuLinks.classList.toggle('active');
+});
+
+// Tutup menu ketika link diklik
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    menuLinks.classList.remove('active');
+  });
+});
+
 
 // Scroll smooth ke bagian tertentu
 const links = document.querySelectorAll('a[href^="#"]');
@@ -36,5 +51,13 @@ window.addEventListener('DOMContentLoaded', () => {
   });
   checkVisible(); // langsung cek saat halaman dimuat
 });
+
+// Tutup menu saat klik salah satu link
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('active');
+  });
+});
+
 
 window.addEventListener('scroll', checkVisible);

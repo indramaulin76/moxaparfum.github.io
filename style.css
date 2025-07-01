@@ -37,17 +37,26 @@ header {
   gap: 1.5rem;
 }
 
+.nav-links li {
+  list-style: none;
+}
+
 .nav-links a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  transition: color 0.3s;
   font-family: 'Segoe UI', Verdana, sans-serif;
-
+  transition: color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #00704a;
+  color: green;
+}
+
+.hamburger{
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
 }
 
 .hero {
@@ -176,24 +185,41 @@ footer {
   .btn {
     padding: 0.5rem 1rem;
   }
-  .navbar {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
   .nav-links {
-    flex-direction: flex;
-    text-align: center;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    top: 60px;
+    right: 0;
     width: 100%;
-    gap: 0.75rem;
-    padding-left: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: none;
+    list-style: none;
   }
+
+  .nav-links.active {
+    display: flex;
+  }
+
   .nav-links li {
     width: 100%;
   }
+
   .nav-links a {
+    color: #333;
+    padding: 0.75rem 1rem;
     display: block;
     width: 100%;
-    padding: 0.5rem 0;
-    color: #333;
+    text-decoration: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    justify-content: space-between;
+    align-items: center;
   }
 }
