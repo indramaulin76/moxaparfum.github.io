@@ -50,7 +50,7 @@ header {
 }
 
 .nav-links a:hover {
-  color: green;
+  color: rgb(0, 0, 0);
 }
 
 .hamburger{
@@ -189,7 +189,8 @@ footer {
     flex-direction: column;
     background: white;
     position: absolute;
-    top: 60px;
+    top: 0px;
+    left: 50%;
     right: 0;
     width: 100%;
     padding: 1rem;
