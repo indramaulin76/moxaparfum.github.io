@@ -178,6 +178,9 @@ footer {
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
   .hero-text h1 {
     font-size: 1.5rem;
   }
@@ -187,12 +190,13 @@ footer {
   }
   .nav-links {
     flex-direction: column;
+    text-align: end;
     background: white;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
     position: absolute;
     top: 0px;
-    left: 50%;
     right: 0;
-    width: 100%;
+    width: 45vw;
     padding: 1rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: none;
@@ -201,6 +205,9 @@ footer {
 
   .nav-links.active {
     display: flex;
+    max-width: 300px; /* atau lebih, tergantung jumlah menu */
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav-links li {
@@ -208,11 +215,13 @@ footer {
   }
 
   .nav-links a {
-    color: #333;
-    padding: 0.75rem 1rem;
-    display: block;
-    width: 100%;
-    text-decoration: none;
+  color: #333;
+  display: block;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem; /* padding kiri-kanan */
+  color: #333;
+  text-decoration: none;
   }
 
   .hamburger {

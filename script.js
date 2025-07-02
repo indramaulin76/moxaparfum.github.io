@@ -27,6 +27,16 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   });
 });
 
+// Tutup menu jika klik di luar area menu
+document.addEventListener('click', function(event) {
+  const isClickInsideMenu = menuLinks.contains(event.target);
+  const isClickOnHamburger = menuIcon.contains(event.target);
+
+  if (!isClickInsideMenu && !isClickOnHamburger) {
+    menuLinks.classList.remove('active');
+  }
+});
+
 
 // Scroll smooth ke bagian tertentu
 const links = document.querySelectorAll('a[href^="#"]');
