@@ -1,5 +1,4 @@
-// script.js
-
+// === ANIMASI PRODUK KETIKA SCROLL ===
 function checkVisible() {
   const elements = document.querySelectorAll('.produk-item');
   const windowHeight = window.innerHeight;
@@ -12,46 +11,8 @@ function checkVisible() {
     }
   });
 }
-// Toggle menu hamburger
-const menuIcon = document.getElementById('menu-icon');
-const menuLinks = document.getElementById('menu-links');
 
-menuIcon.addEventListener('click', () => {
-  menuLinks.classList.toggle('active');
-});
-
-// Tutup menu ketika link diklik
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    menuLinks.classList.remove('active');
-  });
-});
-
-// Tutup menu jika klik di luar area menu
-document.addEventListener('click', function(event) {
-  const isClickInsideMenu = menuLinks.contains(event.target);
-  const isClickOnHamburger = menuIcon.contains(event.target);
-
-  if (!isClickInsideMenu && !isClickOnHamburger) {
-    menuLinks.classList.remove('active');
-  }
-});
-
-
-// Scroll smooth ke bagian tertentu
-const links = document.querySelectorAll('a[href^="#"]');
-
-for (let link of links) {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-}
-
-// Inisialisasi animasi dan tampilkan jika sudah terlihat
+window.addEventListener('scroll', checkVisible);
 window.addEventListener('DOMContentLoaded', () => {
   const elements = document.querySelectorAll('.produk-item');
   elements.forEach(el => {
@@ -59,15 +20,108 @@ window.addEventListener('DOMContentLoaded', () => {
     el.style.transform = 'translateY(40px)';
     el.style.transition = 'all 0.5s ease';
   });
-  checkVisible(); // langsung cek saat halaman dimuat
+  checkVisible();
 });
 
-// Tutup menu saat klik salah satu link
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.getElementById('navLinks').classList.remove('active');
+// === TOGGLE MENU HAMBURGER ===
+const menuIcon = document.getElementById('menu-icon');
+const menuLinks = document.getElementById('menu-links');
+
+if (menuIcon && menuLinks) {
+  menuIcon.addEventListener('click', () => {
+    menuLinks.classList.toggle('active');
+  });
+
+  document.addEventListener('click', function(event) {
+    const isClickInside = menuLinks.contains(event.target) || menuIcon.contains(event.target);
+    if (!isClickInside) menuLinks.classList.remove('active');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuLinks.classList.remove('active');
+    });
+  });
+}
+
+// === SMOOTH SCROLLING ===
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
+// === KERANJANG FUNGSIONAL ===
 
-window.addEventListener('scroll', checkVisible);
+// Tambah produk ke localStorage
+function addToCart(name, price) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push({ name, price: parseInt(price) });
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCount();
+  alert("Produk ditambahkan ke keranjang!");
+}
+
+// Tampilkan jumlah item di ikon keranjang
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const countSpan = document.querySelector(".cart-count");
+  if (countSpan) countSpan.textContent = cart.length;
+}
+
+// Tampilkan isi keranjang di cart.html
+function displayCartItems() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const cartContainer = document.getElementById('cartItems');
+  const totalDisplay = document.getElementById('totalPrice');
+  let total = 0;
+
+  if (!cartContainer || !totalDisplay) return;
+
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>Keranjang kamu kosong.</p>";
+    totalDisplay.textContent = "Rp 0";
+    return;
+  }
+
+  cartContainer.innerHTML = "";
+  cart.forEach((item, index) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("cart-item");
+    itemDiv.innerHTML = `
+      <p><strong>${item.name}</strong> - Rp ${item.price.toLocaleString()}</p>
+      <button onclick="removeFromCart(${index})">Hapus</button>
+    `;
+    cartContainer.appendChild(itemDiv);
+    total += item.price;
+  });
+
+  totalDisplay.textContent = "Rp " + total.toLocaleString("id-ID");
+}
+
+// Hapus produk dari keranjang
+function removeFromCart(index) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  displayCartItems();
+  updateCartCount();
+}
+
+// Checkout dan hapus semua isi keranjang
+function clearCart() {
+  localStorage.removeItem('cart');
+  updateCartCount();
+  displayCartItems();
+  alert("Checkout berhasil. Terima kasih!");
+}
+
+// === JALANKAN SAAT HALAMAN DIMUAT ===
+window.addEventListener("DOMContentLoaded", () => {
+  updateCartCount();
+  if (document.getElementById("cartItems")) {
+    displayCartItems();
+  }
+});

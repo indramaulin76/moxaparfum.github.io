@@ -15,16 +15,24 @@
   <header>
     <nav class="navbar">
       <div class="logo">MØXA Parfum</div>
-          <!-- Hamburger icon -->
-    <div class="hamburger" id="menu-icon">
-      <i class="ph ph-list"></i>
-    </div>
-      <ul class="nav-links" id="menu-links">
+      <div class="nav-actions">
+          <li class="cart-icon">
+          <a href="cart.html">
+          <img src="asset/grocery-store.png">
+          <span class="cart-count" id="cart-count">0</span>
+          </a>
+        </li>
+        <!-- Hamburger icon -->
+        <div class="hamburger" id="menu-icon">
+          <i class="ph ph-list"></i>
+      </div>
+        <ul class="nav-links" id="menu-links">
         <li><a href="auth.html">Login</a></li>
         <li><a href="#home">Home</a></li>
         <li><a href="#produk">Catalog</a></li>
         <li><a href="#kontak">Kontak</a></li>
       </ul>
+      </div>
     </nav>
   </header>
   <section id="produk" class="produk-section">
@@ -34,25 +42,25 @@
         <img src="asset/botol1.jpg" alt="Parfum 1" />
         <h3>Parfum Arab Premium</h3>
         <p>Rp 85.000</p>
-        <a href="https://wa.me/6281234567890" class="btn-wa" target="_blank">add to cart</a>
+        <a href="#" class="btn-cart" onclick="addToCart('Parfum Arab Premium', 85000)">Add to cart</a>
       </div>
       <div class="produk-item">
         <img src="asset/botol2.jpg" alt="Parfum 2" />
         <h3>Parfum Kasturi</h3>
         <p>Rp 95.000</p>
-        <a href="https://wa.me/6281234567890" class="btn-wa" target="_blank">add to cart</a>
+        <a href="#" class="btn-cart" onclick="addToCart('Parfum Arab Premium', 85000)">Add to cart</a>
       </div>
       <div class="produk-item">
         <img src="asset/botol3.jpg" alt="Parfum 2" />
         <h3>Parfum Kasturi</h3>
         <p>Rp 95.000</p>
-        <a href="https://wa.me/6281234567890" class="btn-wa" target="_blank">add to cart</a>
+        <a href="#" class="btn-cart" onclick="addToCart('Parfum Arab Premium', 85000)">Add to cart</a>
       </div>
-            <div class="produk-item">
+      <div class="produk-item">
         <img src="asset/botol4.jpg" alt="Parfum 2" />
         <h3>Parfum Kasturi</h3>
         <p>Rp 95.000</p>
-        <a href="https://wa.me/6281234567890" class="btn-wa" target="_blank">add to cart</a>
+        <a href="#" class="btn-cart" onclick="addToCart('Parfum Arab Premium', 85000)">Add to cart</a>
       </div>
       <!-- Tambahkan lebih banyak produk di sini -->
     </div>

@@ -23,6 +23,13 @@ header {
   margin: auto;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
@@ -32,6 +39,7 @@ header {
 .nav-links {
   list-style: none;
   display: flex;
+  text-align: center;
   gap: 1.5rem;
 }
 
@@ -49,6 +57,36 @@ header {
 .nav-links a:hover {
   color: #A38560;
 }
+
+.cart-icon {
+  display: flex;
+  align-items: end;
+  list-style: none;
+  position: relative;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #E0E0E0;
+  margin-left: 1rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: #A38560;
+  color: #03110D;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.cart-icon img {
+  width: 27px; /* atau ukuran sesuai preferensimu */
+  height: 27px;
+  object-fit: contain;
+}
+
 
 .hamburger {
   display: none;
@@ -83,7 +121,7 @@ header {
   font-size: 2rem;
 }
 
-.btn, .btn-wa, .btn-wa-large {
+.btn-cart{
   background: #A38560;
   color: #03110D;
   padding: 0.75rem 1.5rem;
@@ -158,6 +196,83 @@ header {
   transform: scale(1.1);
 }
 
+.cart-page {
+  padding: 4rem 2rem;
+  background-color: #16302B;
+  color: #E0E0E0;
+  min-height: 70vh;
+}
+
+.cart-page h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #E0E0E0;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cart-item {
+  background-color: #E0E0E0;
+  color: #03110D;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 1rem;
+}
+
+.cart-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.cart-total {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-checkout {
+  display: block;
+  margin: 2rem auto 0;
+  background-color: #A38560;
+  color: #03110D;
+  padding: 0.75rem 2rem;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-checkout:hover {
+  background-color: #8a6f4e;
+  color: #fff;
+}
+
+
 a:focus, a img:focus {
   outline: none;
   box-shadow: none;
@@ -185,8 +300,15 @@ footer {
     list-style: none;
   }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
   .nav-links.active {
     display: flex;
+    text-align: center;
   }
 
   .nav-links li {
